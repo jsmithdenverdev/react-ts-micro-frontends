@@ -1,5 +1,13 @@
-import { RouterProvider } from "react-router-dom";
-import router from "~/router";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+import routes from "~/routes";
+
+const router = createBrowserRouter(createRoutesFromElements(routes), {
+  basename: "/",
+});
 
 /**
  * FederatedModule represents the entrypoint to this federated module. In our
