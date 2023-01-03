@@ -9,7 +9,7 @@ const {
 } = webpack;
 
 module.exports = (env, argv) => ({
-  entry: "./src/index.ts",
+  entry: "./src/index",
   output: {
     filename: "remote-home.js",
     path: path.resolve(__dirname, "dist"),
@@ -22,7 +22,10 @@ module.exports = (env, argv) => ({
     historyApiFallback: true,
   },
   resolve: {
-    extension: [".ts", ".tsx", ".js", ".jsx"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
+    alias: {
+      "~": path.resolve(__dirname, "./src"),
+    },
   },
   module: {
     rules: [

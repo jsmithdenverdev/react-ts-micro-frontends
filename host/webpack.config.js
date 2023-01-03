@@ -11,18 +11,19 @@ const {
 module.exports = (env, argv) => ({
   entry: "./src/index.ts",
   output: {
-    filename: "remote-home.js",
-    path: path.resolve(__dirname, "dist"),
-    publicPath: "http://localhost:3001/",
+    publicPath: "/",
   },
   mode: process.env.NODE_ENV || "development",
   devServer: {
-    port: 3001,
+    port: 3000,
     open: false,
     historyApiFallback: true,
   },
   resolve: {
-    extension: [".ts", ".tsx", ".js", ".jsx"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
+    alias: {
+      "~": path.resolve(__dirname, "./src"),
+    },
   },
   module: {
     rules: [
