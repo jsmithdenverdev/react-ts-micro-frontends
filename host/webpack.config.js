@@ -1,8 +1,14 @@
+const env = require("dotenv").config();
 const path = require("path");
 const webpack = require("webpack");
 const DotenvWebpackPlugin = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const deps = require("./package.json").dependencies;
+
+if (env && env.parsed) {
+  console.log("loaded the following env vars");
+  console.table(env);
+}
 
 const {
   container: { ModuleFederationPlugin },
@@ -35,9 +41,7 @@ module.exports = (env, argv) => ({
     ],
   },
   plugins: [
-    new DotenvWebpackPlugin({
-      systemvars: true,
-    }),
+    new DotenvWebpackPlugin({}),
     new ModuleFederationPlugin({
       name: "host",
       remotes: [
@@ -57,6 +61,11 @@ module.exports = (env, argv) => ({
           singleton: true,
           eager: true,
           requiredVersion: deps["react-dom"],
+        },
+        "@auth0/auth0-react": {
+          singleton: true,
+          eager: true,
+          requiredVersion: deps["@auth0/auth0-react"],
         },
       },
     }),

@@ -59,6 +59,10 @@ module.exports = (env, argv) => ({
           singleton: true,
           requiredVersion: deps["react-dom"],
         },
+        "@auth0/auth0-react": {
+          singleton: true,
+          requiredVersion: deps["@auth0/auth0-react"],
+        },
       },
     }),
     new HtmlWebpackPlugin({
