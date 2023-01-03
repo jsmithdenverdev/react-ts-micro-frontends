@@ -9,13 +9,15 @@ const {
 } = webpack;
 
 module.exports = (env, argv) => ({
-  entry: "./src/index.ts",
+  entry: "./src/index",
   output: {
-    publicPath: "/",
+    filename: "remote-profile.js",
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "http://localhost:3002/",
   },
   mode: process.env.NODE_ENV || "development",
   devServer: {
-    port: 3000,
+    port: 3002,
     open: false,
     historyApiFallback: true,
   },
@@ -39,23 +41,22 @@ module.exports = (env, argv) => ({
       systemvars: true,
     }),
     new ModuleFederationPlugin({
-      name: "host",
-      remotes: [
-        {
-          remote_home: "remote_home@http://127.0.0.1:3001/remote.js",
-          remote_profile: "remote_profile@http://127.0.0.1:3002/remote.js",
-        },
-      ],
+      name: "remote_profile",
+      library: {
+        type: "var",
+        name: "remote_profile",
+      },
+      filename: "remote.js",
+      exposes: {
+        "./Application": "./src/__module",
+      },
       shared: {
-        ...deps,
         react: {
           singleton: true,
-          eager: true,
           requiredVersion: deps["react"],
         },
         "react-dom": {
           singleton: true,
-          eager: true,
           requiredVersion: deps["react-dom"],
         },
       },

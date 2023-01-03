@@ -1,0 +1,16 @@
+{
+  "folders": [
+    {
+      "name": "Host",
+      "path": "./host"
+    },
+    {
+      "name": "Home",
+      "path": "./home"
+    },
+    {
+      "name": "Profile",
+      "path": "./profile"
+    }
+  ]
+}
