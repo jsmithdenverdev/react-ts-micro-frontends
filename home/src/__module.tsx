@@ -1,5 +1,5 @@
-import { Routes } from "react-router-dom";
-import { routes } from "~/routes";
+import { RouterProvider } from "react-router-dom";
+import router from "~/router";
 
 /**
  * FederatedModule represents the entrypoint to this federated module. In our
@@ -8,5 +8,5 @@ import { routes } from "~/routes";
  * @returns
  */
 export default function FederatedModule() {
-  return <Routes>{routes}</Routes>;
+  return <RouterProvider router={router} />;
 }

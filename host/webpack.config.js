@@ -46,6 +46,7 @@ module.exports = (env, argv) => ({
         },
       ],
       shared: {
+        ...deps,
         react: {
           singleton: true,
           eager: true,
