@@ -1,4 +1,5 @@
 import { Outlet } from "react-router";
+import Navbar from "~/components/navbar";
 
 export default function Root() {
   return (
@@ -8,6 +9,7 @@ export default function Root() {
         padding: "3px",
       }}
     >
+      <Navbar />
       <h1>Host</h1>
       <Outlet />
     </div>
