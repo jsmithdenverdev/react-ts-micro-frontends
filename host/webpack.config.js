@@ -7,7 +7,7 @@ const deps = require("./package.json").dependencies;
 
 if (env && env.parsed) {
   console.log("loaded the following env vars");
-  console.table(env);
+  console.table(env.parsed);
 }
 
 const {
@@ -41,7 +41,9 @@ module.exports = (env, argv) => ({
     ],
   },
   plugins: [
-    new DotenvWebpackPlugin({}),
+    new DotenvWebpackPlugin({
+      systemvars: true,
+    }),
     new ModuleFederationPlugin({
       name: "host",
       remotes: [

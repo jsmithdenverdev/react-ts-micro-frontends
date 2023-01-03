@@ -1,8 +1,14 @@
+const env = require("dotenv").config();
 const path = require("path");
 const webpack = require("webpack");
 const DotenvWebpackPlugin = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const deps = require("./package.json").dependencies;
+
+if (env && env.parsed) {
+  console.log("loaded the following env vars");
+  console.table(env.parsed);
+}
 
 const {
   container: { ModuleFederationPlugin },
