@@ -14,9 +14,7 @@ const NavItem = ({ to, children }: any) => (
      * This also means that the entire document is repainted on navigating,
      * so an obnoxious flash occurs on the screen.
      */}
-    <Link to={to} reloadDocument={true}>
-      {children}
-    </Link>
+    <Link to={to}>{children}</Link>
   </li>
 );
 
@@ -30,7 +28,6 @@ export default function Navbar() {
         }}
       >
         <NavItem to="/">Home</NavItem>
-        <NavItem to="/about">About</NavItem>
         <NavItem to="/profile">Profile</NavItem>
       </ul>
     </div>
